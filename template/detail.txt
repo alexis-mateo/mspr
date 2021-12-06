@@ -1,0 +1,6 @@
+<html>
+    <body>
+        %NOM% %PRENOM%
+        <p>%MISSION%</p>
+    </body>
+</html>

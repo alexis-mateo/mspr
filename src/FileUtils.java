@@ -4,15 +4,10 @@ import java.util.Scanner;
 
 public class FileUtils {
 
-//    public static void generateHTMLFromTemplate(String template, String fileName) {
-//       FileUtils templateFile = new FileUtils("template/" + template + ".txt");
-//
-//    }
-
     public static void generateIndex(ArrayList<String> agents) {
         StringBuilder res = new StringBuilder();
         for(String agent : agents) {
-            res.append("<p><a href=\"#\">").append(agent).append("</a></p>");
+            res.append("<p><a href=\"./agents/" + agent + "/details.html\">").append(agent).append("</a></p>");
         }
         FileUtils indexFile = new FileUtils("template/index.txt");
         FileUtils.createFile("html/index.html", indexFile.toString().replaceAll("%AGENTS%", String.valueOf(res)));

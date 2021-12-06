@@ -1,6 +1,10 @@
 <html>
+    <head>
+        <title>%LOGIN%</title>
+    </head>
     <body>
         %NOM% %PRENOM%
         <p>%MISSION%</p>
+        <div>%OBJETS%</div>
     </body>
 </html>

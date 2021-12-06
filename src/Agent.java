@@ -26,20 +26,28 @@ public class Agent {
         this.materiels = materiels;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
     public void createAgentDetails() {
         FileUtils detailFile = new FileUtils("template/detail.txt");
         String content = detailFile.toString().replaceAll("%NOM%", nom)
-                        .replaceAll("%PRENOM%", prenom).replaceAll("%MISSION%", mission);
+                        .replaceAll("%PRENOM%", prenom)
+                        .replaceAll("%MISSION%", mission)
+                        .replaceAll("%LOGIN%", login)
+                        .replaceAll("%OBJETS%", getObjetsHTML());
         try {
             Files.createDirectories(Paths.get("html/agents/" + login));
         } catch (IOException e) {
             e.printStackTrace();
         }
         FileUtils.createFile("html/agents/" + login + "/details.html", content);
+    }
+
+    private String getObjetsHTML() {
+        StringBuilder res = new StringBuilder();
+        for (String obj : Objets.getObjets().keySet()) {
+            boolean checked = materiels.contains(obj);
+            res.append(Objets.getHtmlForObject(obj, checked));
+        }
+        return String.valueOf(res);
     }
 
     @Override

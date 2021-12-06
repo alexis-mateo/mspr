@@ -6,3 +6,4 @@ toto
 kit
 lampe
 lacrymo
+talky

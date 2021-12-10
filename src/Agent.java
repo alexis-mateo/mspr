@@ -13,7 +13,7 @@ public class Agent {
     private String login;
     private String mission;
     private String mdp;
-    private ArrayList<String> materiels = new ArrayList<>();
+    private ArrayList<String> materiels;
 
     public Agent(String nom, String prenom, String mission, String mdp, ArrayList<String> materiels) {
         this.nom = nom;
@@ -41,8 +41,9 @@ public class Agent {
 
     private String getObjetsHTML() {
         StringBuilder res = new StringBuilder();
+        boolean checked;
         for (String obj : Objets.getObjets().keySet()) {
-            boolean checked = materiels.contains(obj);
+            checked = materiels.contains(obj);
             res.append(Objets.getHtmlForObject(obj, checked));
         }
         return String.valueOf(res);

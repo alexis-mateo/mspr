@@ -6,8 +6,9 @@ public class Main {
         FileUtils.generateIndex(staff.getLines());
         Objets.initListObjets();
 
+        FileUtils fileAgent;
         for(String s : staff.getLines()) {
-            FileUtils fileAgent = new FileUtils("files/agents/" + s + ".txt");
+            fileAgent = new FileUtils("files/agents/" + s + ".txt");
             Agent agent = Agent.createAgentFromString(fileAgent);
             agent.createAgentDetails();
         }

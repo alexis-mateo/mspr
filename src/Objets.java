@@ -1,6 +1,7 @@
 import java.util.HashMap;
 
 public class Objets {
+    // TODO: a refacto
     private static HashMap<String, String> objets = new HashMap<>();
 
     public static void initListObjets() {

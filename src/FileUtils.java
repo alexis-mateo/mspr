@@ -6,9 +6,12 @@ public class FileUtils {
 
     public static void generateIndex(ArrayList<String> agents) {
         StringBuilder res = new StringBuilder();
+        StringBuilder htpasswdContent = new StringBuilder();
         for(String agent : agents) {
             res.append("<p><a href=\"./agents/" + agent + "/details.html\">").append(agent).append("</a></p>");
+            htpasswdContent.append(agent).append(":").append(Agent.getAgentFromLogin(agent).getMdp()).append('\n');
         }
+        FileUtils.createFile("html/.htpasswd", String.valueOf(htpasswdContent));
         FileUtils indexFile = new FileUtils("template/index.txt");
         FileUtils.createFile("html/index.html", indexFile.toString().replaceAll("%AGENTS%", String.valueOf(res)));
     }

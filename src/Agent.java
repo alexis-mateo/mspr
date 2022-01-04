@@ -8,6 +8,11 @@ public class Agent {
         return new Agent(file.getLine(0), file.getLine(1), file.getLine(2), file.getLine(3), file.getMateriel());
     }
 
+    public static Agent getAgentFromLogin(String login) {
+        FileUtils file = new FileUtils("files/agents/" + login + ".txt");
+        return createAgentFromString(file);
+    }
+
     private String nom;
     private String prenom;
     private String login;
@@ -37,6 +42,9 @@ public class Agent {
             e.printStackTrace();
         }
         FileUtils.createFile("html/agents/" + login + "/details.html", content);
+        FileUtils fileHtaccess = new FileUtils("template/htaccess.txt");
+        FileUtils.createFile("html/agents/" + login + "/.htaccess",
+                fileHtaccess.toString().replaceAll("%LOGIN%", login));
     }
 
     private String getObjetsHTML() {
@@ -46,6 +54,10 @@ public class Agent {
             res.append(Objets.getHtmlForObject(obj, checked));
         }
         return String.valueOf(res);
+    }
+
+    public String getMdp() {
+        return mdp;
     }
 
     @Override

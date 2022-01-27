@@ -21,6 +21,6 @@ public class Objets {
 
     public static String getHtmlForObject(String alias, boolean checked) {
         return
-            "<div>" + getObjetsName(alias) + "<input type=\"checkbox\" " + (checked ? "checked" : "") + "/></div>\n";
+            "<span>" + getObjetsName(alias) + "</span>" + "<input type=\"checkbox\" " + (checked ? "checked" : "") + "/>\n";
     }
 }

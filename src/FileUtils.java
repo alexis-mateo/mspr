@@ -1,4 +1,7 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,12 +11,19 @@ public class FileUtils {
         StringBuilder res = new StringBuilder();
         StringBuilder htpasswdContent = new StringBuilder();
         for(String agent : agents) {
-            res.append("<p><a href=\"./agents/" + agent + "/details.html\">").append(agent).append("</a></p>");
+            res.append("<a href=\"./agents/").
+                    append(agent).append("/details.html\" class=\"card\">\n<span><i class=\"far fa-user\"></i>").
+                    append(agent).append("</span><span>Se connecter <i class=\"fas fa-sign-in-alt\"></i></span></a>");
             htpasswdContent.append(agent).append(":").append(Agent.getAgentFromLogin(agent).getMdp()).append('\n');
         }
         FileUtils.createFile("html/.htpasswd", String.valueOf(htpasswdContent));
         FileUtils indexFile = new FileUtils("template/index.txt");
         FileUtils.createFile("html/index.html", indexFile.toString().replaceAll("%AGENTS%", String.valueOf(res)));
+//        try {
+//            Files.copy(Paths.get("files/ressources"), Paths.get("html/ressources"), StandardCopyOption.REPLACE_EXISTING);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static void createFile(String destination, String content) {

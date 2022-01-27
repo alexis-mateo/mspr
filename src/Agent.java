@@ -1,11 +1,12 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 public class Agent {
     public static Agent createAgentFromString(FileUtils file) {
-        return new Agent(file.getLine(0), file.getLine(1), file.getLine(2), file.getLine(3), file.getMateriel());
+        return new Agent(file.getLine(1), file.getLine(0), file.getLine(2), file.getLine(3), file.getMateriel());
     }
 
     public static Agent getAgentFromLogin(String login) {
@@ -18,15 +19,17 @@ public class Agent {
     private String login;
     private String mission;
     private String mdp;
+    private String imageUrl;
     private ArrayList<String> materiels;
 
     public Agent(String nom, String prenom, String mission, String mdp, ArrayList<String> materiels) {
         this.nom = nom;
         this.prenom = prenom;
-        this.login = this.nom.toLowerCase().charAt(0) + this.prenom.toLowerCase();
+        this.login = this.prenom.toLowerCase().charAt(0) + this.nom.toLowerCase();
         this.mission = mission;
         this.mdp = mdp;
         this.materiels = materiels;
+        this.imageUrl = "./" + this.login + ".jpg";
     }
 
     public void createAgentDetails() {
@@ -35,9 +38,13 @@ public class Agent {
                         .replaceAll("%PRENOM%", prenom)
                         .replaceAll("%MISSION%", mission)
                         .replaceAll("%LOGIN%", login)
-                        .replaceAll("%OBJETS%", getObjetsHTML());
+                        .replaceAll("%OBJETS%", getObjetsHTML())
+                        .replaceAll("%IMAGE%", "<img class=\"detail-image\" src=\"" + this.imageUrl + "\" />");
         try {
             Files.createDirectories(Paths.get("html/agents/" + login));
+            Files.copy(Paths.get("files/agents/" + login + ".jpg"),
+                    Paths.get("html/agents/" + login + "/" + login + ".jpg"),
+                    StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }

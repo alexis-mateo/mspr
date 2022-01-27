@@ -2,10 +2,33 @@
     <head>
         <meta charset="UTF-8">
         <title>%LOGIN%</title>
+        <link rel="stylesheet" href="../../styles/details.css">
+        <link rel="icon" type="image/png" href="../../ressources/goSecuriIcon.png" />
+
     </head>
     <body>
-        %NOM% %PRENOM%
-        <p>%MISSION%</p>
-        <div>%OBJETS%</div>
+        <nav>
+            <img src="../../ressources/logoSecuri.png" />
+        </nav>
+        <div class="grid-detail">
+            <div class="identity">
+                <div>
+                    <span class="identity-title">Nom :</span>
+                    <span>%NOM%</span>
+                </div>
+                <div>
+                    <span class="identity-title">Prénom :</span>
+                    <span>%PRENOM%</span>
+                </div>
+                <div></div>
+                <span class="identity-title">Missions :</span>
+                <span>%MISSION%</span>
+            </div>
+            <div class="objets">
+                <span>Listes des objets empruntés :</span>
+                %OBJETS%
+            </div>
+            %IMAGE%
+        </div>
     </body>
 </html>

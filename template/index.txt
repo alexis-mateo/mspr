@@ -4,8 +4,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Go Securi</title>
+        <link rel="stylesheet" href="./styles/index.css">
+        <link rel="icon" type="image/png" href="./ressources/goSecuriIcon.png" />
+        <script src="https://kit.fontawesome.com/29189c846f.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        %AGENTS%
+        <nav>
+            <img src="./ressources/logoSecuri.png" />
+        </nav>
+        <h1>Liste des utilisateurs :</h1>
+        <div class="card-grid">
+            %AGENTS%
+        </div>
     </body>
 </html>

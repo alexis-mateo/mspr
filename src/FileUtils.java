@@ -23,7 +23,15 @@ public class FileUtils {
 //        FileUtils indexFile = new FileUtils(FileUtils.class.getResource("template/index.txt").toString());
         FileUtils indexFile = new FileUtils("/template/index.txt");
         FileUtils.createFile("./html/index.html", indexFile.toString().replaceAll("%AGENTS%", String.valueOf(res)));
-        //TODO ajouter ressources to output folder
+        //ajouter ressources to output folder
+        File fichierRessources = new File("files/ressources");
+        File fichierVersQuiCopier = new File("./html/ressources");
+        try {
+            copy(fichierRessources, fichierVersQuiCopier);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 //        try {
 //            Files.copy(Paths.get("files/ressources"), Paths.get("./html/ressources"), StandardCopyOption.REPLACE_EXISTING);
 //        } catch (IOException e) {
@@ -108,4 +116,39 @@ public class FileUtils {
         }
         return str.toString();
     }
+
+    public static void copyDirectory(final File from, final File to) throws IOException {
+        if (! to.exists()) {
+            to.mkdir();
+        }
+        final File[] inDir = from.listFiles();
+        for (int i = 0; i < inDir.length; i++) {
+            final File file = inDir[i];
+            copy(file, new File(to, file.getName()));
+        }
+    }
+    public static void copy(final InputStream inStream, final OutputStream outStream, final int bufferSize) throws IOException {
+        final byte[] buffer = new byte[bufferSize];
+        int nbRead;
+        while ((nbRead = inStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, nbRead);
+        }
+    }
+    public static void copyFile(final File from, final File to) throws IOException {
+        final InputStream inStream = new FileInputStream(from);
+        final OutputStream outStream = new FileOutputStream(to);
+        copy(inStream, outStream, (int) Math.min(from.length(), 4*1024));
+        inStream.close();
+        outStream.close();
+    }
+    public static void copy(final File from, final File to) throws IOException {
+        if (from.isFile()) {
+            copyFile(from, to);
+        } else if (from.isDirectory()){
+            copyDirectory(from, to);
+        } else {
+            throw new FileNotFoundException(from.toString() + " does not exist" );
+        }
+    }
 }
+

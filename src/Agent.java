@@ -33,7 +33,7 @@ public class Agent {
     }
 
     public void createAgentDetails() {
-        FileUtils detailFile = new FileUtils("template/detail.txt");
+        FileUtils detailFile = new FileUtils("/template/detail.txt");
         String content = detailFile.toString().replaceAll("%NOM%", nom)
                         .replaceAll("%PRENOM%", prenom)
                         .replaceAll("%MISSION%", mission)
@@ -41,16 +41,16 @@ public class Agent {
                         .replaceAll("%OBJETS%", getObjetsHTML())
                         .replaceAll("%IMAGE%", "<img class=\"detail-image\" src=\"" + this.imageUrl + "\" />");
         try {
-            Files.createDirectories(Paths.get("html/agents/" + login));
+            Files.createDirectories(Paths.get("./html/agents/" + login));
             Files.copy(Paths.get("files/agents/" + login + ".jpg"),
-                    Paths.get("html/agents/" + login + "/" + login + ".jpg"),
+                    Paths.get("./html/agents/" + login + "/" + login + ".jpg"),
                     StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        FileUtils.createFile("html/agents/" + login + "/details.html", content);
-        FileUtils fileHtaccess = new FileUtils("template/htaccess.txt");
-        FileUtils.createFile("html/agents/" + login + "/.htaccess",
+        FileUtils.createFile("./html/agents/" + login + "/details.html", content);
+        FileUtils fileHtaccess = new FileUtils("/template/htaccess.txt");
+        FileUtils.createFile("./html/agents/" + login + "/.htaccess",
                 fileHtaccess.toString().replaceAll("%LOGIN%", login));
     }
 

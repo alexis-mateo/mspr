@@ -1,4 +1,0 @@
-AuthUserFile "/xampp/htdocs/.htpasswd"
-AuthName "Page protégée, veuillez vous identifier"
-AuthType Basic
-Require user sconnor

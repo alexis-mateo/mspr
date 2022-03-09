@@ -20,23 +20,15 @@ public class FileUtils {
         }
 
         FileUtils.createFile("./html/.htpasswd", String.valueOf(htpasswdContent));
-//        FileUtils indexFile = new FileUtils(FileUtils.class.getResource("template/index.txt").toString());
         FileUtils indexFile = new FileUtils("/template/index.txt");
         FileUtils.createFile("./html/index.html", indexFile.toString().replaceAll("%AGENTS%", String.valueOf(res)));
         //ajouter ressources to output folder
-        File fichierRessources = new File("files/ressources");
-        File fichierVersQuiCopier = new File("./html/ressources");
         try {
-            copy(fichierRessources, fichierVersQuiCopier);
-
+            copy(new File("files/ressources"), new File("./html/ressources"));
+            copy(new File("files/styles"), new File("./html/styles"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        try {
-//            Files.copy(Paths.get("files/ressources"), Paths.get("./html/ressources"), StandardCopyOption.REPLACE_EXISTING);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public static void createFile(String destination, String content) {
@@ -71,26 +63,6 @@ public class FileUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        try {
-//            File file = new File(fileName);
-//            if (fileName.startsWith("/template")) {
-//                fileName = fileName.replaceAll("//", File.separator);
-//                file = new File(getClass().getResource(this.fileName).toURI());
-//            }
-//            try {
-//                Scanner myReader = new Scanner(file);
-//                while (myReader.hasNextLine()) {
-//                    lines.add(myReader.nextLine());
-//                }
-//                myReader.close();
-//            } catch (FileNotFoundException e) {
-//                System.out.println("An error occurred.");
-//                e.printStackTrace();
-//            }
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public ArrayList<String> getLines() {

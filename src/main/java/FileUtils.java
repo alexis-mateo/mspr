@@ -95,7 +95,7 @@ public class FileUtils {
     }
 
     public static void copyDirectory(final File from, final File to) throws IOException {
-        if (! to.exists()) {
+            if (! to.exists()) {
             to.mkdir();
         }
         final File[] inDir = from.listFiles();

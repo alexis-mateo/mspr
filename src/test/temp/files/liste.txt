@@ -1,0 +1,8 @@
+mousqueton	Mousqueton
+lacrymo	Bombe lacrymogène
+lampe	Lampe Torche
+gants	Gants d'intervention
+brassard	Brassard de sécurité
+taser	Tasers
+talky	Talkies walkies
+cyno	Bandeau agent cynophile

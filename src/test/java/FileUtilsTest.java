@@ -1,3 +1,4 @@
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -5,19 +6,27 @@ import static org.junit.Assert.*;
 
 public class FileUtilsTest {
 
+    FileUtils instance;
+
     @Before
     public void setUp() throws Exception {
-        //bonjour
+        FileUtils instance = new FileUtils("src/test/temp/files/staff.txt");
+        this.instance = instance;
     }
 
-    @Test
-    public void generateIndex() {
-        //wow
+    @After
+    public void tearDown() throws Exception {
+
     }
 
     @Test
     public void createFile() {
-        //change
+        instance.createFile("./src/test/temp/files/index.html","");
+    }
+
+    @Test
+    public void generateIndex() {
+        assertEquals(false,true);
     }
 
     @Test

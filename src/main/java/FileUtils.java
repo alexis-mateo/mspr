@@ -19,6 +19,11 @@ public class FileUtils {
             htpasswdContent.append(agent).append(":").append(Agent.getAgentFromLogin(agent).getMdp()).append('\n');
         }
 
+        try {
+            Files.createDirectories(Paths.get("./html"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         FileUtils.createFile("./html/.htpasswd", String.valueOf(htpasswdContent));
         FileUtils indexFile = new FileUtils("/template/index.txt");
         FileUtils.createFile("./html/index.html", indexFile.toString().replaceAll("%AGENTS%", String.valueOf(res)));

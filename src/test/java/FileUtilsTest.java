@@ -7,6 +7,7 @@ public class FileUtilsTest {
 
     @Before
     public void setUp() throws Exception {
+        //bonjour
     }
 
     @Test

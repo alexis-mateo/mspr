@@ -12,7 +12,7 @@ public class FileUtilsTest {
 
     @Test
     public void generateIndex() {
-        assertEquals(true,true);
+        assertEquals(false,true);
     }
 
     @Test

@@ -4,6 +4,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class FileUtils {
+    String hey;
     /*
     static final byte[] CHUNK_SEPARATOR;
     FileUtils.CHUNK_SEPARATOR = new byte[]{13, 10};

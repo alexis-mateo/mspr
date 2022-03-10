@@ -1,14 +1,18 @@
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.io.*;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileUtils {
 
-    public static void generateIndex(ArrayList<String> agents) {
+    public static void generateIndex(ArrayList<String> agents) throws NoSuchAlgorithmException {
         StringBuilder res = new StringBuilder();
         StringBuilder htpasswdContent = new StringBuilder();
 
@@ -16,7 +20,8 @@ public class FileUtils {
             res.append("<a href=\"./agents/").
                     append(agent).append("/details.html\" class=\"card\">\n<span><i class=\"far fa-user\"></i>").
                     append(agent).append("</span><span>Se connecter <i class=\"fas fa-sign-in-alt\"></i></span></a>");
-            htpasswdContent.append(agent).append(":").append(Agent.getAgentFromLogin(agent).getMdp()).append('\n');
+            String passwd64 = "{SHA}" + Base64.encodeBase64String(DigestUtils.sha1(Agent.getAgentFromLogin(agent).getMdp()));
+            htpasswdContent.append(agent).append(":").append(passwd64).append('\n');
         }
 
         try {

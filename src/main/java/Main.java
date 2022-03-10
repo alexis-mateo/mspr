@@ -1,6 +1,8 @@
+import java.security.NoSuchAlgorithmException;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
         FileUtils staff = new FileUtils("files/staff.txt");
 
         FileUtils.generateIndex(staff.getLines());

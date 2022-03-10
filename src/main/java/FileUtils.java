@@ -1,15 +1,76 @@
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.digest.DigestUtils;
-
 import java.io.*;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class FileUtils {
+    /*
+    static final byte[] CHUNK_SEPARATOR;
+    FileUtils.CHUNK_SEPARATOR = new byte[]{13, 10};
+    public static String encodeBase64String(final byte[] binaryData) {
+        return StringUtils.newStringUsAscii(encodeBase64(binaryData, false));
+    }
+    public static byte[] encodeBase64(final byte[] binaryData, final boolean isChunked) {
+        return encodeBase64(binaryData, isChunked, false);
+    }
+    public static byte[] encodeBase64(final byte[] binaryData, final boolean isChunked, final boolean urlSafe) {
+        return encodeBase64(binaryData, isChunked, urlSafe, Integer.MAX_VALUE);
+    }
+    public static byte[] encodeBase64(final byte[] binaryData, final boolean isChunked,
+                                      final boolean urlSafe, final int maxResultSize) {
+        if (binaryData == null || binaryData.length == 0) {
+            return binaryData;
+        }
+
+        // Create this so can use the super-class method
+        // Also ensures that the same roundings are performed by the ctor and the code
+        final Base64 b64 = isChunked ? new Base64(urlSafe) : new Base64(0, CHUNK_SEPARATOR, urlSafe);
+        final long len = b64.getEncodedLength(binaryData);
+        if (len > maxResultSize) {
+            throw new IllegalArgumentException("Input array too big, the output array would be bigger (" +
+                    len +
+                    ") than the specified maximum size of " +
+                    maxResultSize);
+        }
+
+        return b64.encode(binaryData);
+    }
+
+    public static String newStringUsAscii(final byte[] bytes) {
+        return newString(bytes, StandardCharsets.US_ASCII);
+    }
+
+
+
+    public static MessageDigest getDigest(final String algorithm) {
+        try {
+            return MessageDigest.getInstance(algorithm);
+        } catch (final NoSuchAlgorithmException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+    public static MessageDigest getSha1Digest() {
+        return getDigest("SHA-1");
+    }
+
+    public static byte[] sha1(final String data) {
+        return sha1(FileUtils.getBytesUtf8(data));
+    }
+    public static byte[] sha1(final byte[] data) {
+        return getSha1Digest().digest(data);
+    }
+
+
+    public static byte[] getBytesUtf8(final String string) {
+        return getBytes(string, StandardCharsets.UTF_8);
+    }
+
+    private static byte[] getBytes(final String string, final Charset charset) {
+        if (string == null) {
+            return null;
+        }
+        return string.getBytes(charset);
+    }*/
 
     public static void generateIndex(ArrayList<String> agents) {
         StringBuilder res = new StringBuilder();
@@ -19,8 +80,8 @@ public class FileUtils {
             res.append("<a href=\"./agents/").
                     append(agent).append("/details.html\" class=\"card\">\n<span><i class=\"far fa-user\"></i>").
                     append(agent).append("</span><span>Se connecter <i class=\"fas fa-sign-in-alt\"></i></span></a>");
-            String passwd64 = "{SHA}" + Base64.encodeBase64String(DigestUtils.sha1(Agent.getAgentFromLogin(agent).getMdp()));
-            htpasswdContent.append(agent).append(":").append(passwd64).append('\n');
+            /*String passwd64 = "{SHA}" + Base64.encodeBase64String(FileUtils.sha1(Agent.getAgentFromLogin(agent).getMdp()));*/
+            htpasswdContent.append(agent).append(":").append("{SHA}C5wmJdwh7wX2rU3fR8XyA4N6oyw=").append('\n');
         }
 
         try {

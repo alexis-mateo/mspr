@@ -1,4 +1,4 @@
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class FileUtilsTest {
 
     @Test
     public void createFile() {
-        instance.createFile("./src/test/temp/html/createFile.txt","toto");
+        instance.createFile("./src/test/temp/html/createFile.txt", "toto");
         File target = new File("src/test/temp/html/createFile.txt");
         assertTrue(target.exists());
         target.delete();
@@ -52,10 +52,10 @@ public class FileUtilsTest {
     public void copyDirectory() throws IOException {
         File from = new File("src/test/temp/files/ressources");
         File to = new File("src/test/temp/html/ressources");
-        assertEquals(false,to.exists());
-        FileUtils.copyDirectory(from,to);
-        assertEquals(true,to.exists());
-        assertEquals(true,to.isDirectory());
+        assertEquals(false, to.exists());
+        FileUtils.copyDirectory(from, to);
+        assertEquals(true, to.exists());
+        assertEquals(true, to.isDirectory());
         File target1 = new File("src/test/temp/html/ressources/goSecuriIcon.png");
         File target2 = new File("src/test/temp/html/ressources/logoSecuri.png");
         assertTrue(target1.exists());
@@ -69,16 +69,17 @@ public class FileUtilsTest {
     public void copyException() throws IOException {
         File fromFail = new File("src/test/temp/files/ressourcesquinexistepas/goSecuriIcon.jpg");
         File to = new File("src/test/temp/html/ressources");
-        FileUtils.copy(fromFail,to);
+        FileUtils.copy(fromFail, to);
     }
 
     @Test
     public void copyFile() throws IOException {
         File from = new File("src/test/temp/files/ressources/goSecuriIcon.png");
         File to = new File("src/test/temp/html/goSecuriIcon.png");
-        assertEquals(false,to.exists());
-        FileUtils.copyFile(from,to);
-        assertEquals(true,to.exists());
+        assertEquals(false, to.exists());
+        FileUtils.copyFile(from, to);
+        assertEquals(true, to.exists());
         to.delete();
     }
+
 }

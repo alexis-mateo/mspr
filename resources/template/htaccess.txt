@@ -1,3 +1,4 @@
+ErrorDocument 401 default
 AuthUserFile "/var/www/alexis/goSecuri/.htpasswd"
 AuthName "Page protégée, veuillez vous identifier"
 AuthType Basic

@@ -6,13 +6,12 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileUtils {
 
-    public static void generateIndex(ArrayList<String> agents) throws NoSuchAlgorithmException {
+    public static void generateIndex(ArrayList<String> agents) {
         StringBuilder res = new StringBuilder();
         StringBuilder htpasswdContent = new StringBuilder();
 
